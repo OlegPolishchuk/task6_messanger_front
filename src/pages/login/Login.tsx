@@ -1,18 +1,18 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import {Button, Form, Spinner} from "react-bootstrap";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {loginUser} from "store/reducer/actions/actions";
 import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "hooks/useAppSelector";
-import {selectIsEntered, selectIsLoading} from "store/selectors";
+import {selectError, selectIsLoading} from "store/selectors";
 import socket from "socket";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const isUserEntered = useAppSelector(selectIsEntered);
   const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
 
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState('');
@@ -34,6 +34,10 @@ export const Login = () => {
     setValidated(true);
   };
 
+  useEffect(() => {
+    if (error) setUsername('')
+  }, [error])
+
   return (
     <div className={'d-flex justify-content-center align-items-center min-vh-100'}>
 
@@ -53,7 +57,10 @@ export const Login = () => {
           />
 
           <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
+            {error
+              ? error
+              : 'Please provide a valid username'
+            }
           </Form.Control.Feedback>
         </Form.Group>
 

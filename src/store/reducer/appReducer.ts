@@ -2,7 +2,6 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {loginUser} from "store/reducer/actions/actions";
 import {InitialState} from "store/reducer/types";
 import {LoginResponse} from "api/types";
-import {handleAxiosError} from "store/utils/handleAxiosError";
 import {Message} from "store/reducer/types/Message";
 import {ExistedUsers} from "store/reducer/types/InitialState";
 
@@ -54,7 +53,7 @@ const appSlice = createSlice({
     })
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = handleAxiosError(action.payload);
+      state.error = action.payload as string;
     })
   }
 })

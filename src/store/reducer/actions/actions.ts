@@ -1,5 +1,6 @@
 import {Api} from "api";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import {handleAxiosError} from "store/utils/handleAxiosError";
 
 export const loginUser = createAsyncThunk('app/login',
   async (username: string, {rejectWithValue}) => {
@@ -8,6 +9,6 @@ export const loginUser = createAsyncThunk('app/login',
 
     return data;
   } catch (e) {
-    return rejectWithValue(e)
+    return rejectWithValue(handleAxiosError(e))
   }
 })
