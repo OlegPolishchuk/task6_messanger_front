@@ -1,10 +1,10 @@
 import React, {FormEvent, useState} from 'react';
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, Spinner} from "react-bootstrap";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {loginUser} from "store/reducer/actions/actions";
 import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "hooks/useAppSelector";
-import {selectIsEntered} from "store/selectors";
+import {selectIsEntered, selectIsLoading} from "store/selectors";
 import socket from "socket";
 
 export const Login = () => {
@@ -12,6 +12,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const isUserEntered = useAppSelector(selectIsEntered);
+  const isLoading = useAppSelector(selectIsLoading);
 
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState('');
@@ -58,6 +59,15 @@ export const Login = () => {
 
         <Form.Group className={'d-flex justify-content-center'}>
           <Button variant="outline-secondary btn-lg" type="submit">
+            {isLoading && (
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            )}
             Enter
           </Button>
         </Form.Group>
