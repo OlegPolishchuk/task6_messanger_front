@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.link {
+  text-decoration: none;
+  padding: 8px 10px;
+}
+
+.link_active {
+  background: #f6f6f6;
+}
+
+.message_box {
+  resize: none;
+}
+
+.accordion-item .accordion-button:not(.collapsed) {
+  background-color: transparent;
+}
+
+.accordion-item .accordion-button:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.css-b62m3t-container {
+  flex-grow: 1;
+}
+
+.messages-box {
+  height: 600px;
+
+  overflow-y: scroll;
+}
