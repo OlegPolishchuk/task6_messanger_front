@@ -37,7 +37,6 @@ function App() {
     })
 
     socket.on('refresh-messages', (messages) => {
-      console.log(`redresh messages`, messages)
       dispatch(setSingleMessage(messages))
     })
 
@@ -46,7 +45,6 @@ function App() {
     })
 
     socket.on('refresh-users-list', (usersList) => {
-      console.log(`usersList => `, usersList)
       dispatch(setExistedUsers(usersList))
     })
 
@@ -60,7 +58,7 @@ function App() {
   return (
     <div className="App container py-5">
 
-      <h1 className={'fs-4 text-center mb-5'}>
+      <h1 className={'fs-4 text-center text-secondary mb-5'}>
         Welcome {username}
       </h1>
 

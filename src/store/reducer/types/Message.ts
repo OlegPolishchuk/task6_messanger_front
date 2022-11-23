@@ -3,6 +3,7 @@ export interface Message {
   from: string;
   message: string;
   subject: string;
+  isRead: Boolean;
   _id: string;
 }
 

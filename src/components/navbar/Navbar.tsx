@@ -9,7 +9,9 @@ export const Navbar = () => {
   return (
     <div className={'col-2 d-flex flex-column gap-4 p-3'}>
       <NavLink className={nameLinkClassNames} to={'/'} end>Send message</NavLink>
-      <NavLink className={nameLinkClassNames} to={'/messages'}>Messages</NavLink>
+      <NavLink className={nameLinkClassNames} to={'/messages'}>
+        Messages
+      </NavLink>
     </div>
   );
 };

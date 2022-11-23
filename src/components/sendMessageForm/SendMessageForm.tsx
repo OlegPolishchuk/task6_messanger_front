@@ -1,4 +1,4 @@
-import React, {FormEvent, useMemo, useRef, useState} from 'react';
+import React, {FormEvent, useRef, useState} from 'react';
 import {Button, Form, InputGroup} from "react-bootstrap";
 import socket from "socket";
 import {useAppSelector} from "hooks/useAppSelector";
@@ -9,21 +9,14 @@ import {ExistedUsers} from "store/reducer/types/InitialState";
 export const SendMessageForm = () => {
   const [validated, setValidated] = useState(false);
   const [autocompleteInputValue, setAutocompleteInputValue] = useState({
-    username: '',
     userId: '',
+    username: '',
   });
 
   const existedUsers = useAppSelector(selectExistedUsers);
 
-  const recipientRef = useRef<HTMLInputElement>(null);
   const subjectRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
-
-  const items = useMemo(
-    () =>
-      existedUsers.map((user) => user ),
-    [existedUsers]
-  );
 
   const handleChangeAutocomplete = (value: ExistedUsers) => {
     setAutocompleteInputValue(value)
@@ -44,11 +37,11 @@ export const SendMessageForm = () => {
         subject: subjectRef.current?.value || '',
         message: messageRef.current?.value || '' ,
       }
-      console.log(`messageData`, messageData)
 
       socket.emit('message', messageData);
 
       form.reset();
+      // setAutocompleteInputValue({value: '', label: ''})
       setValidated(false);
     }
   };
@@ -63,7 +56,7 @@ export const SendMessageForm = () => {
 
       <AutoCompleteInput
         items={existedUsers}
-        value={autocompleteInputValue.userId}
+        value={autocompleteInputValue}
         onChange={handleChangeAutocomplete}
       />
 
