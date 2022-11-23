@@ -64,7 +64,7 @@ function App() {
       <div className={'d-flex'}>
         <Navbar />
 
-        <div className={'col-10'}>
+        <div className={'col-9 col-lg-10'}>
           <Outlet />
         </div>
       </div>
