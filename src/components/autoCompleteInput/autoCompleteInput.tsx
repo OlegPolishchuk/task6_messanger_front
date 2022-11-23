@@ -23,7 +23,6 @@ export const AutoCompleteInput: FC<Props> = ({items, onChange, value}) => {
 
 
   const handleChange = (option: ItemToSelect | null) => {
-    console.log('сработа handleChange', option)
     if (option) {
       onChange({userId: option.value, username: option.label})
     }
@@ -31,16 +30,12 @@ export const AutoCompleteInput: FC<Props> = ({items, onChange, value}) => {
 
 
   const handleBlur = () => {
-    console.log('onBlur!!!')
     if (itemsValuesList.includes(selectValue.label)) {
-      console.log(`itemsValusesList.include(${selectValue.label})`)
-
       const user = selectOptions.find(item => item.label === selectValue.label) as ItemToSelect
 
       handleChange(user)
     }
     else {
-      console.log(`!itemsValusesList.include(${selectValue.label})`)
       handleChange(selectOptions[0])
     }
   }

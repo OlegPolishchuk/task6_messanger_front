@@ -41,8 +41,8 @@ export const SendMessageForm = () => {
       socket.emit('message', messageData);
 
       form.reset();
-      // setAutocompleteInputValue({value: '', label: ''})
       setValidated(false);
+      setAutocompleteInputValue({userId: '', username: ''})
     }
   };
 

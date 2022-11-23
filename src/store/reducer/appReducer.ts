@@ -24,12 +24,10 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setMessages: (state, action: PayloadAction<Message[]>) => {
-      console.log(`setMessages`, action.payload)
       state.messages = action.payload;
     },
 
     setSingleMessage: (state, action: PayloadAction<Message>) => {
-      console.log(`setSingleMessage`, action.payload)
       state.messages = [action.payload, ...state.messages]
     },
 

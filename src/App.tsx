@@ -30,7 +30,6 @@ function App() {
     })
 
     socket.on('load-start-data', (startData) => {
-      console.log(startData)
       dispatch(setMessages(startData.startMessages))
       dispatch(setExistedUsers(startData.usersList))
       dispatch(setSocketId(startData.socketId))
